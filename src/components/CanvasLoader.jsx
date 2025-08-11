@@ -6,7 +6,7 @@ const CanvasLoader = () => {
         <Html as="div" center style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}> 
             <span className="canvas-loader" />
             <p style={{fontSize: 14, color: '#F1F1F1', marginTop: 40 ,fontWeight:800}}>
-                {progress != 0  ? `${progress.toFixed(2)}%`:'Loading...'} </p>
+                {progress != 0  ? `${progress.toFixed(1)}%`:'Loading...'} </p>
         </Html>
     );
 }       
