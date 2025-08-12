@@ -1,18 +1,17 @@
 import { PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { OrbitControls } from "three-stdlib";
 import { Leva,useControls } from "leva";
-import {useEffect} from "react";
-import CanvasLoader  from "../components/CanvasLoader.jsx";
-import HackerRoom from "../components/Hackerroom.jsx";
 import { calculateSizes } from "../constants/index.js";
 import { useMediaQuery } from "react-responsive";
+import CanvasLoader  from "../components/CanvasLoader.jsx";
+import HackerRoom from "../components/Hackerroom.jsx";
+import Target from "../components/Target.jsx";
 const Hero = () => {
     const isSmall = useMediaQuery({ maxWidth: 440 });
      const isTablet = useMediaQuery({ minwidth:768,maxWidth: 1024 });
       const isMobile = useMediaQuery({ maxWidth: 768 });
-    const sizes =calculateSizes(isSmall, isTablet, isMobile);
+    const sizes = calculateSizes(isSmall, isTablet, isMobile);
     const dlc = useControls('DirectionalLight',{
         positionX:{value:0, min:-10, max:10, step:0.01},
         positionY:{value:0, min:-10, max:10, step:0.01},
@@ -35,6 +34,9 @@ const Hero = () => {
                 <HackerRoom  scale={sizes.deskScale} 
                 position={sizes.deskPosition} 
                 rotation={[0,-Math.PI,0]}/>
+                <group>
+                <Target position ={sizes.targetPosition} />
+                </group>
                 <ambientLight intensity={1} />
                 <directionalLight position={[dlc.positionX,dlc.positionY,dlc.positionZ]} intensity={dlc.intensity} />
                 
