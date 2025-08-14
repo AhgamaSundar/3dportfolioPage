@@ -18,12 +18,13 @@ const Hero = () => {
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const sizes = calculateSizes(isSmall, isTablet, isMobile);
-  const dlc = useControls("DirectionalLight", {
-    positionX: { value: 0, min: -10, max: 10, step: 0.01 },
-    positionY: { value: 0, min: -10, max: 10, step: 0.01 },
-    positionZ: { value: 0, min: -10, max: 10, step: 0.01 },
-    intensity: { value: 1, min: 0, max: 10, step: 0.01 },
-  });
+  // Leva controls for tweaking the DirectionalLight properties in real-time
+  // const dlc = useControls("DirectionalLight", {
+  //   positionX: { value: 0, min: -10, max: 10, step: 0.01 },
+  //   positionY: { value: 0, min: -10, max: 10, step: 0.01 },
+  //   positionZ: { value: 0, min: -10, max: 10, step: 0.01 },
+  //   intensity: { value: 1, min: 0, max: 10, step: 0.01 },
+  // });
 
   return (
     <section className="min-h-screen w-full flex flex-col  ">
@@ -34,7 +35,7 @@ const Hero = () => {
         <p className="hero_tag text-gray_gradient">Trying to survive</p>
       </div>
       <div className="w-full h-full absolute inset-0">
-        <Leva />
+        
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
             <HeroCamera isMobile={isMobile}>
@@ -52,8 +53,8 @@ const Hero = () => {
             </group>
             <ambientLight intensity={0.5} />
             <directionalLight
-              position={[dlc.positionX, dlc.positionY, dlc.positionZ]}
-              intensity={dlc.intensity}
+              position={[-0.3, 0.24,0]}
+              intensity={3.01}
             />
 
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
