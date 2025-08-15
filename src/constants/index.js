@@ -27,7 +27,77 @@ export const clientReviews = [
 
 export const myProjects = [
   
-    
+ 
+{
+      title: 'ANY-SUB',
+      desc: 'ANY-SUB is a subscription management platform that enables merchants to offer and manage customer subscriptions while giving customers a seamless way to track, modify, and renew their active plans.',
+      subdesc: 'Built with FlutterFlow for the front-end, with planned AI integration for personalized recommendations and analytics.',
+      href: 'https://app.flutterflow.io/share/test-zkbpia',
+      texture: '/textures/project/project2.mp4',
+      logo: '/assets/project-logo1.png',
+      logoStyle: {
+        backgroundColor: '#13202F',
+        border: '0.2px solid #17293E',
+        boxShadow: '0px 0px 60px 0px #2F6DB54D',
+      },
+      spotlight: '/assets/spotlight1.png',
+      tags: [{
+          id: 1,
+          name: 'React.js',
+          path: '/assets/react.svg',
+        },
+        {
+          id: 2,
+          name: 'TailwindCSS',
+          path: 'assets/tailwindcss.png',
+        },
+        {
+          id: 3,
+          name: 'TypeScript',
+          path: '/assets/typescript.png',
+        },
+        {
+          id: 4,
+          name: 'Framer Motion',
+          path: '/assets/framer.png',
+        },
+      ],
+  },
+   {
+    title: 'Weather-api return',
+    desc: 'A project that provides historical weather information for multiple stations and word definitions through a simple online interface and API.',
+    subdesc: 'Built using Flask for the backend, Pandas for data processing, Jinja2 for HTML rendering, and CSV/TXT files as the data sourc',
+    href: 'https://github.com/AhgamaSundar/Weather-Api/blob/main/main.py',
+    texture: '/textures/project/project1.mp4',
+    logo: '/assets/project-logo2.png',
+    logoStyle: {
+      backgroundColor: '#2A1816',
+      border: '0.2px solid #36201D',
+      boxShadow: '0px 0px 60px 0px #AA3C304D',
+    },
+    spotlight: '/assets/spotlight2.png',
+    tags: [{
+      id: 1,
+      name: 'React.js',
+      path: '/assets/react.svg',
+    },
+    {
+      id: 2,
+      name: 'TailwindCSS',
+      path: 'assets/tailwindcss.png',
+    },
+    {
+      id: 3,
+      name: 'TypeScript',
+      path: '/assets/typescript.png',
+    },
+    {
+      id: 4,
+      name: 'Framer Motion',
+      path: '/assets/framer.png',
+    },
+    ],
+  }
 ];
 
 export const calculateSizes = (isSmall, isMobile, isTablet) => {
