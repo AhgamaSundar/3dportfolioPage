@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { myProjects } from "../constants/index.js";
 import { Canvas } from "@react-three/fiber";
+import { Center, PerspectiveCamera } from "@react-three/drei";
+import CanvasLoader from '../components/CanvasLoader.jsx';
+import DemoComputer from '../components/DemoComputer.jsx';
+import { useControls,Leva } from "leva";
+import { OrbitControls } from "@react-three/drei";
+
 const Project = () => {
     const projectCount =myProjects.length
     const [selectedProjectIndex,setSelectedProjectIndex]= useState(0)
@@ -14,7 +20,15 @@ const Project = () => {
                 return previndex === projectCount-1 ? 0 : previndex + 1;
             }
         })
-    }
+  }
+  const retroCompControls = useControls("computer", {
+    positionX: { value: 0, min: -100, max: 200, step: 0.01 },
+    positionY: { value: 0, min: -200, max: 20, step: 0.01 },
+    positionZ: { value: 0, min: -400, max: 20, step: 0.01 },
+  });
+  useEffect(() => {
+    console.log(retroCompControls)
+  })
   return (
     <section className="c-space my-20">
       <p className="head-text">My Work </p>
@@ -84,14 +98,30 @@ const Project = () => {
               />
             </button>
           </div>
-              </div>
-              
-              <div className="border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
-                  <Canvas >
-                      
-                  </Canvas>
-                  
-              </div>
+        </div>
+
+        <div className="border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
+          <Canvas>
+            <ambientLight intensity={1} />
+            <directionalLight position={[10, 10, 5]} />
+
+            <Center>
+              <Suspense fallback={<CanvasLoader />}>
+              <group
+                scale={3}
+                position={[
+                  14.02,
+                  -58.01,
+                  -453,
+                ]}
+              >
+                  <DemoComputer />
+              </group>
+                  </Suspense>
+            </Center>
+            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false}  />
+          </Canvas>
+        </div>
       </div>
     </section>
   );
