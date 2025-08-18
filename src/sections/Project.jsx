@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { myProjects } from "../constants/index.js";
 import { Canvas } from "@react-three/fiber";
-import { Center, PerspectiveCamera } from "@react-three/drei";
+import { Center, PerspectiveCamera, useVideoTexture } from "@react-three/drei";
 import CanvasLoader from '../components/CanvasLoader.jsx';
 import DemoComputer from '../components/DemoComputer.jsx';
 import { useControls,Leva } from "leva";
@@ -10,7 +10,9 @@ import { OrbitControls } from "@react-three/drei";
 const Project = () => {
     const projectCount =myProjects.length
     const [selectedProjectIndex,setSelectedProjectIndex]= useState(0)
-    const currentProject = myProjects[selectedProjectIndex];
+  const currentProject = myProjects[selectedProjectIndex];
+  const texture =currentProject.texture;
+  console.log(texture)
     const handleNavigation =(direction) =>{
         setSelectedProjectIndex((previndex) => {
             if (direction === "prev") {
@@ -24,7 +26,7 @@ const Project = () => {
   const retroCompControls = useControls("computer", {
     positionX: { value: 0, min: -100, max: 200, step: 0.01 },
     positionY: { value: 0, min: -200, max: 20, step: 0.01 },
-    positionZ: { value: 0, min: -400, max: 20, step: 0.01 },
+    positionZ: { value: 0, min: -300, max: 20, step: 0.01 },
   });
   useEffect(() => {
     console.log(retroCompControls)
@@ -115,7 +117,7 @@ const Project = () => {
                   -453,
                 ]}
               >
-                  <DemoComputer />
+                  <DemoComputer txt={texture} />
               </group>
                   </Suspense>
             </Center>
