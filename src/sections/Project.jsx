@@ -111,17 +111,15 @@ const Project = () => {
               <Suspense fallback={<CanvasLoader />}>
               <group
                 scale={3}
-                position={[
-                  14.02,
-                  -58.01,
-                  -453,
-                ]}
+                position={
+                0
+                }
               >
                   <DemoComputer txt={texture} />
               </group>
                   </Suspense>
             </Center>
-            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false}  />
+            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={true}  enablePan enableDamping />
           </Canvas>
         </div>
       </div>
