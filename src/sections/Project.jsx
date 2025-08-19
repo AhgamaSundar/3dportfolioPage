@@ -23,14 +23,12 @@ const Project = () => {
             }
         })
   }
-  const retroCompControls = useControls("computer", {
-    positionX: { value: 0, min: -100, max: 200, step: 0.01 },
-    positionY: { value: 0, min: -200, max: 20, step: 0.01 },
-    positionZ: { value: 0, min: -300, max: 20, step: 0.01 },
-  });
-  useEffect(() => {
-    console.log(retroCompControls)
-  })
+  // const retroCompControls = useControls("computer", {
+  //   positionX: { value: 0, min: -100, max: 200, step: 0.01 },
+  //   positionY: { value: 0, min: -200, max: 20, step: 0.01 },
+  //   positionZ: { value: 0, min: -300, max: 20, step: 0.01 },
+  // });
+
   return (
     <section className="c-space my-20">
       <p className="head-text">My Work </p>
@@ -111,8 +109,7 @@ const Project = () => {
               <Suspense fallback={<CanvasLoader />}>
               <group
                 scale={3}
-                position={
-                0
+                position={[14,-20,-100]
                 }
               >
                   <DemoComputer txt={texture} />
