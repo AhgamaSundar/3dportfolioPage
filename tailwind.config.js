@@ -26,6 +26,13 @@ export default {
       backgroundImage: {
         terminal: "url('/assets/terminal.png')",
       },
+       keyframes: {
+         typewriter: {
+           to: {
+             left: "100%"
+           }
+         }
+       }
     },
   },
   plugins: [],
