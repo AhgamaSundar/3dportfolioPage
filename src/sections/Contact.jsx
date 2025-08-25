@@ -5,7 +5,7 @@ const Contact = () => {
   const formRef = useRef()
   const [loading,setLoading] = useState(false)
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const handleChange = () => {setForm.name=formRef.name };
+  const handleChange = ({ name, value }) => { setForm({ ...form, [name]: value })};
   const handleSubmit = () => { };
 
   
