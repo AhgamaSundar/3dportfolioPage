@@ -3,10 +3,28 @@ import { useRef } from "react";
 
 const Contact = () => {
   const formRef = useRef()
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [test,setTest]=useState('Lets Talk')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const handleChange = ({ name, value }) => { setForm({ ...form, [name]: value })};
-  const handleSubmit = () => { };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value })
+  };
+  const handleSubmit =  async (e) => { 
+    e.preventDefault();
+    let response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(form)
+    })
+    setLoading(true)
+    let result = await response.json()
+    setLoading(false)
+    console.log(result)
+
+  };
 
   
   return (
@@ -18,7 +36,7 @@ const Contact = () => {
           className="absolute inset-0 min-h-screen"
         />
         <div className="contact-container">
-          <h3 className="head-text">Lets Talk</h3>
+          <h3 className="head-text">{`${test}`}</h3>
           <p className="text-lg text-white-600 mt-3">
             I am a Master At understanding design patterns I could make any
             ideas appealing and convert the user via elegant userflow{" "}
@@ -35,7 +53,7 @@ const Contact = () => {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                required
+                
                 className="field-input"
                 placeholder="joe"
               />
@@ -47,7 +65,7 @@ const Contact = () => {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                required
+                
                 className="field-input"
                 placeholder="abc@.something.com"
               />
@@ -58,7 +76,7 @@ const Contact = () => {
                 name="message"
                 value={form.message}
                 onChange={handleChange}
-                required
+                
                 rows={5}
                 className="field-input"
               />
