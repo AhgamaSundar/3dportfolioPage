@@ -12,17 +12,17 @@ const Contact = () => {
   };
   const handleSubmit =  async (e) => { 
     e.preventDefault();
-    let response = await fetch("/api/contact", {
+    setLoading(true)
+    let response = await fetch("http://localhost:3001/api/contact", {
       method: "POST",
       headers: {
         "Content-Type":"application/json"
       },
       body:JSON.stringify(form)
     })
-    setLoading(true)
     let result = await response.json()
-    setLoading(false)
     console.log(result)
+    setLoading(false)
 
   };
 
