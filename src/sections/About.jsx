@@ -60,7 +60,7 @@ const About = () => {
                 showGraticules
                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                objectRotation={2}
+               
               />
             </div>
             <div>
@@ -69,8 +69,8 @@ const About = () => {
               </p>
               <p className="grid-subtext">
                 I'm based in India with remote work available
-              </p>
-              <Button name="Contact Me" isBeam containerClass="w-full mt-10" />
+              </p><a href="#contact">
+              <Button name="Contact Me"  isBeam containerClass="w-full mt-10" /></a>
             </div>
           </div>
         </div>
