@@ -1,37 +1,28 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useState } from "react";
 import { myProjects } from "../constants/index.js";
 import { Canvas } from "@react-three/fiber";
-import { Center, PerspectiveCamera, useVideoTexture } from "@react-three/drei";
-import CanvasLoader from '../components/CanvasLoader.jsx';
-import DemoComputer from '../components/DemoComputer.jsx';
-import { useControls,Leva } from "leva";
-import { OrbitControls } from "@react-three/drei";
+import { Center, OrbitControls } from "@react-three/drei";
+import CanvasLoader from "../components/CanvasLoader.jsx";
+import DemoComputer from "../components/DemoComputer.jsx";
 
 const Project = () => {
-    const projectCount =myProjects.length
-    const [selectedProjectIndex,setSelectedProjectIndex]= useState(0)
+  const projectCount = myProjects.length;
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
   const currentProject = myProjects[selectedProjectIndex];
-  const texture =currentProject.texture;
-  console.log(texture)
-    const handleNavigation =(direction) =>{
-        setSelectedProjectIndex((previndex) => {
-            if (direction === "prev") {
-                return previndex === 0 ? projectCount-1 :previndex -1
-            }
-            else {
-                return previndex === projectCount-1 ? 0 : previndex + 1;
-            }
-        })
-  }
-  // const retroCompControls = useControls("computer", {
-  //   positionX: { value: 0, min: -100, max: 200, step: 0.01 },
-  //   positionY: { value: 0, min: -200, max: 20, step: 0.01 },
-  //   positionZ: { value: 0, min: -300, max: 20, step: 0.01 },
-  // });
+
+  const handleNavigation = (direction) => {
+    setSelectedProjectIndex((prevIndex) => {
+      if (direction === "prev") {
+        return prevIndex === 0 ? projectCount - 1 : prevIndex - 1;
+      } else {
+        return prevIndex === projectCount - 1 ? 0 : prevIndex + 1;
+      }
+    });
+  };
 
   return (
     <section className="c-space my-20">
-      <p className="head-text">My Work </p>
+      <p className="head-text">My Work</p>
       <div className="grid lg:grid-cols-2 grid-cols-1 mt-12 gap-5 w-full">
         <div className="flex flex-col gap-5 relative sm:p-10 py-10 px-5 shadow-2xl shadow-black-200">
           <div className="absolute top-0 right-0">
@@ -42,7 +33,7 @@ const Project = () => {
             />
           </div>
           <div
-            className="p-3 backdrop-filter,backdrop-blur-3xl w-fit rounded-lg"
+            className="p-3 backdrop-filter backdrop-blur-3xl w-fit rounded-lg"
             style={currentProject.logoStyle}
           >
             <img
@@ -60,14 +51,14 @@ const Project = () => {
           </div>
           <div className="flex items-center justify-between flex-wrap gap-5">
             <div className="flex items-center gap-3">
-              {currentProject.tags.map((tags, index) => (
+              {currentProject.tags.map((tag, index) => (
                 <div key={index} className="tech-logo">
-                  <img src={tags.path} alt={tags.name} />
+                  <img src={tag.path} alt={tag.name} />
                 </div>
               ))}
             </div>
             <a
-              className="flex items-center gap-2 cursor-pointer text-white-600 "
+              className="flex items-center gap-2 cursor-pointer text-white-600"
               href={currentProject.href}
               target="_blank"
               rel="noreferrer"
@@ -83,7 +74,7 @@ const Project = () => {
             >
               <img
                 src="/assets/left-arrow.png"
-                alt="rightarrow"
+                alt="left arrow"
                 className="w-4 h-4"
               />
             </button>
@@ -93,30 +84,30 @@ const Project = () => {
             >
               <img
                 src="assets/right-arrow.png"
-                alt="rightarrow"
+                alt="right arrow"
                 className="w-4 h-4"
               />
             </button>
           </div>
         </div>
 
-        <div className="border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
-          <Canvas>
+        <div className="border-black-300 bg-black-200 rounded-lg h-96 md:h-full"> 
+          <Canvas> !3d model starts here
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 5]} />
-
             <Center>
               <Suspense fallback={<CanvasLoader />}>
-              <group
-                scale={3}
-                position={[14,-20,-100]
-                }
-              >
-                  <DemoComputer txt={texture} />
-              </group>
-                  </Suspense>
+                <group scale={3} position={[14, -20, -100]}>
+                  <DemoComputer txt={currentProject.texture} />
+                </group>
+              </Suspense>
             </Center>
-            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={true}  enablePan enableDamping />
+            <OrbitControls
+              maxPolarAngle={Math.PI / 2}
+              enableZoom={true}
+              enablePan
+              enableDamping
+            />
           </Canvas>
         </div>
       </div>
